@@ -2,7 +2,17 @@ import React from 'react';
 import {View, Text, Image, Pressable} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-const ProductScreenComponent = () => {
+export type ProductComponentType = {
+  productName: string;
+  productCategory: string;
+  productRating: number;
+  productNoOfRating: string;
+  productPrice: string;
+  productDescription: string;
+  productImage: string;
+};
+
+const ProductScreenComponent = (props: ProductComponentType) => {
   return (
     <View style={{height: 160, padding: 13, flexDirection: 'row'}}>
       <View style={{flex: 3}}>
@@ -16,12 +26,12 @@ const ProductScreenComponent = () => {
         </View>
         <View style={{}}>
           <Text style={{fontSize: 13, fontWeight: '600', marginTop: 7}}>
-            English Retreat Pizza
+            {props.productName}
           </Text>
         </View>
         <View>
           <Text style={{fontSize: 11, color: 'gray', marginTop: 7}}>
-            In Pizzas
+            {props.productCategory}
           </Text>
         </View>
         <View
@@ -40,7 +50,7 @@ const ProductScreenComponent = () => {
               <FontAwesome
                 // key={`${item.id}-${i}`}
                 style={{margin: 0.5}}
-                name={i < Math.floor(4) ? 'star' : 'star-o'}
+                name={i < Math.floor(props.productRating) ? 'star' : 'star-o'}
                 size={11}
                 color={'#fabe1b'}
               />
@@ -52,18 +62,20 @@ const ProductScreenComponent = () => {
                 fontWeight: 'bold',
                 marginLeft: 2,
               }}>
-              400
+              {props.productNoOfRating}
             </Text>
           </View>
         </View>
         <View style={{justifyContent: 'center', marginTop: 7}}>
           <Text style={{fontSize: 12, fontWeight: '500'}}>
             {'\u20B9'}
-            <Text style={{fontSize: 12}}>149</Text>
+            <Text style={{fontSize: 12}}>{props.productPrice}</Text>
           </Text>
         </View>
         <View style={{marginTop: 7}}>
-          <Text style={{fontSize: 12, color: '#4f4f4d'}}>Lots of cheese.</Text>
+          <Text style={{fontSize: 12, color: '#4f4f4d'}}>
+            {props.productDescription}
+          </Text>
         </View>
       </View>
       <View style={{flex: 1, marginTop: 5, marginRight: 10}}>
@@ -71,7 +83,7 @@ const ProductScreenComponent = () => {
           <Image
             style={{height: 95, width: 95, borderRadius: 10}}
             source={{
-              uri: 'https://cdn.pixabay.com/photo/2020/05/17/04/22/pizza-5179939_1280.jpg',
+              uri: props.productImage,
             }}
           />
         </View>

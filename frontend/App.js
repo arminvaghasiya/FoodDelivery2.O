@@ -9,11 +9,13 @@ import {
   View,
 } from 'react-native';
 import HomeScreen from './screens/HomeScreen';
+import ProductScreenComponent from '../frontend/components/ProductScreenComponent';
+import ProductScreen from './screens/ProductScreen';
 
 const App = () => {
   return (
     <View>
-      <HomeScreen />
+      <ProductScreen />
     </View>
   );
 };
